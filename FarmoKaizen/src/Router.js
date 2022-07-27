@@ -12,6 +12,7 @@ import {
   Favourite,
   Profile,
   AddProduct,
+  MyProducts,
 } from './components/screens/index';
 
 import {EventRegister} from 'react-native-event-listeners';
@@ -68,6 +69,13 @@ const RouterComponent = () => {
           key="AddProduct"
           hideNavBar={true}
           component={AddProduct}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+        <Scene
+          key="MyProducts"
+          hideNavBar={true}
+          component={MyProducts}
           gestureEnable={false}
           panHandlers={null}
         />

@@ -8,5 +8,6 @@ const images = {
   cartIcon: require('../../assets/Images/cart.png'),
   favIcon: require('../../assets/Images/fav.png'),
   profileIcon: require('../../assets/Images/profile.png'),
+  rightArrowIcon: require('../../assets/Images/right-arrow.png'),
 };
 export default images;

@@ -6,3 +6,5 @@ export * from './InputWithLabels';
 export * from './DocumentUploadButton';
 export * from './TabIcon';
 export * from './HeaderHome';
+export * from './OrderList';
+export * from './OrderItem';

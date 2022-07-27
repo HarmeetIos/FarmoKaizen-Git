@@ -68,7 +68,12 @@ export class Home extends Component {
                 Actions.AddProduct();
               }}
             />
-            <Button children={'Add pro'} onPress={() => {}} />
+            <Button
+              children={'Add pro'}
+              onPress={() => {
+                Actions.MyProducts();
+              }}
+            />
             <Button children={'Add pro'} onPress={() => {}} />
             <Button children={'Add pro'} onPress={() => {}} />
           </KeyboardAwareScrollView>

@@ -8,6 +8,7 @@ import Cart from './Cart/Cart';
 import Favourite from './Favourite/Favourite';
 import Profile from './Profile/Profile';
 import AddProduct from './AddProduct/AddProduct';
+import MyProducts from './MyProducts/MyProducts';
 
 export {
   Login,
@@ -20,4 +21,5 @@ export {
   Favourite,
   Profile,
   AddProduct,
+  MyProducts,
 };
