@@ -13,7 +13,8 @@ import {Actions} from 'react-native-router-flux';
 const Header = props => {
   return (
     <>
-      <SafeAreaView style={{backgroundColor: Colors.White}}></SafeAreaView>
+      <SafeAreaView
+        style={{backgroundColor: Colors.buttonGreenColor}}></SafeAreaView>
       <View style={styles.headerHome}>
         <View
           style={{
@@ -34,7 +35,7 @@ const Header = props => {
             onPress={() => {
               Actions.pop();
             }}>
-            <Image style={{tintColor: 'black'}} source={Images.iconBack} />
+            <Image style={{tintColor: 'white'}} source={Images.iconBack} />
           </TouchableOpacity>
         </View>
       </View>
@@ -51,11 +52,11 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     borderColor: 'grey',
     borderBottomWidth: 0.5,
-    backgroundColor: Colors.White,
+    backgroundColor: Colors.buttonGreenColor,
   },
   titleStyle: {
     fontFamily: Fonts.robotoBold,
-    color: Colors.darGrey,
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
   },
