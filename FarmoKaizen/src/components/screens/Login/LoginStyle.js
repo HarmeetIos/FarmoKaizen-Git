@@ -1,0 +1,82 @@
+import {StyleSheet} from 'react-native';
+import {Images, Colors, Fonts} from '../../../theme';
+
+export default StyleSheet.create({
+  mainView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  loginLogo: {
+    marginTop: '20%',
+    height: 80,
+    width: 180,
+    alignSelf: 'center',
+  },
+  loginButton: {
+    width: '85%',
+    alignSelf: 'center',
+    height: 40,
+    marginTop: 20,
+    backgroundColor: Colors.buttonBlueColor,
+  },
+  hintBtnStyle: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: '8%',
+    top: 15,
+    zIndex: 1,
+  },
+  signUpButton: {
+    width: 100,
+    height: 35,
+    backgroundColor: Colors.signupButtonColor,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 2,
+  },
+  signUpCont: {
+    backgroundColor: 'rgba(255,255,255,0.7)',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 60,
+    paddingBottom: 20,
+    justifyContent: 'space-between',
+    padding: 20,
+    width: '100%',
+  },
+  mnemonicsContainer: {
+    backgroundColor: 'white',
+    borderColor: 'grey',
+    borderWidth: 1.5,
+    borderRadius: 4,
+    height: 150,
+    width: '85%',
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  copyIcon: {
+    height: 15,
+    width: 15,
+  },
+  copyText: {
+    color: Colors.darGrey,
+    fontSize: 14,
+    fontFamily: Fonts.robotoMedium,
+    fontWeight: 'bold',
+  },
+  mnemonicsInput: {
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1.5,
+    height: '70%',
+    textAlignVertical: 'top',
+  },
+  tabsStyle: {width: '85%', alignSelf: 'center'},
+  tabIcon: {height: 20, width: 20, marginRight: 10},
+});
