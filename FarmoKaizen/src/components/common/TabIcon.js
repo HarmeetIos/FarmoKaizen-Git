@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { Fonts, Colors, Images } from '../../theme';
+import {Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Fonts, Colors, Images} from '../../theme';
 
 const TabIcon = props => {
   return (
@@ -11,16 +11,14 @@ const TabIcon = props => {
         style={[
           props.ImgSize,
           {
-            tintColor: props.focused
-              ? Colors.yellowColor
-              : Colors.lightGrayTextColor,
+            tintColor: props.focused ? Colors.buttonGreenColor : 'grey',
           },
         ]}
       />
       <Text
         style={[
           styles.titleText,
-          { color: props.focused ? 'white' : 'white' },
+          {color: props.focused ? Colors.buttonGreenColor : 'grey'},
         ]}>
         {props.title}
       </Text>
@@ -46,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { TabIcon };
+export {TabIcon};

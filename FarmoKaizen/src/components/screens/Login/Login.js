@@ -28,8 +28,9 @@ import {
   ScreenBg,
   InputWithLabels,
 } from '../../common';
+import {Actions} from 'react-native-router-flux';
 
-export class Login extends Component {
+class Login extends Component {
   render() {
     return (
       <>
@@ -37,15 +38,12 @@ export class Login extends Component {
           <KeyboardAwareScrollView style={{marginTop: 20}}>
             <View>
               <Image
-                resizeMode="contain"
-                style={[
-                  styles.loginLogo,
-                  {backgroundColor: Colors.buttonGreenColor},
-                ]}
-                // source={Images.login_Icon}
+                resizeMode="stretch"
+                style={[styles.loginLogo, {height: 200, width: 200}]}
+                source={Images.login_Icon}
               />
               <Input
-                customStyle={{marginTop: '50%'}}
+                customStyle={{marginTop: '30%'}}
                 placeholder="Email"
                 value={this.props.loginEmail}
                 onChangeText={text => {
@@ -77,23 +75,35 @@ export class Login extends Component {
                 }}
               />
               <TouchableOpacity onPress={() => {}}>
-                <Image
-                  source={Images.forgetPass_Icon}
-                  resizeMode="contain"
-                  style={{height: 20, width: 20}}
-                />
                 <Text
                   style={{
                     fontWeight: 'bold',
                     textAlign: 'right',
                     marginRight: 20,
+                    marginTop: 10,
                   }}>
                   {' '}
                   Forgot Password?
                 </Text>
               </TouchableOpacity>
-              <Button children={'LOGIN'} />
+              <Button children={'LOGIN'} onPress={() => Actions.tab()} />
             </View>
+            <Button
+              defaultBtn={{
+                borderColor: Colors.buttonGreenColor,
+                backgroundColor: 'white',
+                borderWidth: 2,
+              }}
+              defaultBtnText={{
+                color: Colors.buttonGreenColor,
+                textShadowOffset: {width: 0, height: 0},
+                textShadowRadius: 0,
+              }}
+              children={'SIGN UP'}
+              onPress={() => {
+                Actions.Register();
+              }}
+            />
           </KeyboardAwareScrollView>
         </View>
       </>

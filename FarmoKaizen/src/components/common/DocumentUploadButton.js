@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {Fonts, Colors} from '../../theme';
+import {Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Fonts, Colors, Images} from '../../theme';
 
-const Button = ({
+const DocumentUploadButton = ({
   onPress,
   children,
   defaultBtn,
@@ -20,6 +20,7 @@ const Button = ({
       onPress={onPress}
       disabled={disabled}>
       <Text style={[styles.textStyle, defaultBtnText]}>{children}</Text>
+      <Image style={styles.imageStyle} source={Images.uploadIcon}></Image>
     </TouchableOpacity>
   );
 };
@@ -27,9 +28,11 @@ const Button = ({
 const styles = StyleSheet.create({
   buttonStyle: {
     position: 'relative',
-    height: 42,
-    maxHeight: 42,
-    backgroundColor: Colors.buttonGreenColor,
+    height: 200,
+    maxHeight: 200,
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: 'grey',
     justifyContent: 'center',
     alignSelf: 'stretch',
     borderRadius: 5,
@@ -47,6 +50,10 @@ const styles = StyleSheet.create({
     elevation: 1,
     zIndex: 999999,
   },
+  imageStyle: {
+    tintColor: 'grey',
+    alignSelf: 'center',
+  },
 });
 
-export {Button};
+export {DocumentUploadButton};

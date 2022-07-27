@@ -1,39 +1,23 @@
-// import ForgotPassword from './ForgotPassword';
-// import Splash from './Splash/Splash';
 import Login from './Login/Login';
-// import FBLogin from './FBLogin';
-// import Signup from './Signup';
-// import VerifyOTP from './VerifyOTP';
-// import PinLock from './PinLock';
-// import Pin from './Pin';
-// import Mnemonics from './Mnemonics';
-// import MnemonicsVerify from './MnemonicsVerify';
-// import SelectInterests from './SelectInterests';
-// import Profile from './Profile';
-// import MarketPlace from './MarketPlace';
-// import CreateNft from './CreateNft';
-// import Home from './Home';
-// import SearchMarket from './SearchMarket';
-// import CreateNftDetails from './CreateNftDetails';
-// import NftDetails from './NftDetails';
-// import NftTrxHistory from './NftTrxHistory';
-// import MarketNft from './MarketNft';
-// import ProfileSetting from './ProfileSetting';
-// import ProfileDetails from './ProfileDetails';
-// import ChangePassword from './ChangePassword';
-// import BuyNft from './BuyNft/BuyNft';
-// import ForgotPassword from './ForgotPassword';
-// import NFTYElite from './NFTYElite';
-// import ReceiveCurrency from './ReceiveCurrency';
-// import ProfileWallets from './ProfileWallets';
-// import ProfileDeposit from './ProfileDeposit';
-// import WithdrawToken from './WithdrawToken';
-// import HomeScreen from './HomeScreen';
-// import Comments from './Comments';
-// import HomeDetails from './HomeDetails';
-// import Contacts from './Contacts';
-// import UserDetails from './userDetails';
-// import AddContact from './AddContact';
-// import Following from './Following';
+import Splash from './Splash/Splash';
+import Register from './Register/Register';
+import AddLicense from './AddLicense/AddLicense';
+import AddPayment from './AddPayment/AddPayment';
+import Home from './Home/Home';
+import Cart from './Cart/Cart';
+import Favourite from './Favourite/Favourite';
+import Profile from './Profile/Profile';
+import AddProduct from './AddProduct/AddProduct';
 
-export {Login};
+export {
+  Login,
+  Splash,
+  Register,
+  AddLicense,
+  AddPayment,
+  Home,
+  Cart,
+  Favourite,
+  Profile,
+  AddProduct,
+};
