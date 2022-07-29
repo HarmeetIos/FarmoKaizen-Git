@@ -10,9 +10,9 @@ import {
   Animated,
 } from 'react-native';
 import {Fonts, Images, Colors} from '../../theme';
-import {OrderItem} from './OrderItem';
+import {MarketItem} from './MarketItem';
 
-class OrderList extends Component {
+class FavouriteList extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -49,10 +49,11 @@ class OrderList extends Component {
           renderItem={({item, index}) => {
             // alert(JSON.stringify(item))
             return (
-              <OrderItem
-                title="Tiee"
-                subtitle="jkjkj"
-                date="1212"
+              <MarketItem
+                title={item.title}
+                price={item.price}
+                subtitle={item.subtitle}
+                rating={item.rating}
                 onPress={() => {}}
               />
             );
@@ -97,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {OrderList};
+export {FavouriteList};

@@ -29,9 +29,30 @@ import {
   InputWithLabels,
   TabIcon,
   HeaderHome,
+  FavouriteList,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
 
+const temp = [
+  {
+    title: 'Grapes',
+    price: '16 per/kg',
+    subtitle: 'Fresh green grapes',
+    rating: 4,
+  },
+  {
+    title: 'Oranges',
+    price: '11 per/kg',
+    subtitle: 'Fresh Oranges',
+    rating: 4.5,
+  },
+  {
+    title: 'Oninos',
+    price: '11 per/kg',
+    subtitle: 'White Oninios',
+    rating: 3.5,
+  },
+];
 export class Favourite extends Component {
   static navigationOptions = () => {
     return {
@@ -59,9 +80,9 @@ export class Favourite extends Component {
   render() {
     return (
       <>
-        <HeaderHome Title={'FarmoKaizen'} hideLeftBtn={{display: 'none'}} />
-        <View>
-          <Text>Favourite</Text>
+        <HeaderHome Title={'Favourite'} hideLeftBtn={{display: 'none'}} />
+        <View style={styles.mainView}>
+          <FavouriteList value={temp}></FavouriteList>
         </View>
       </>
     );
