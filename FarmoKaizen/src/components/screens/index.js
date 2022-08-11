@@ -9,6 +9,8 @@ import Favourite from './Favourite/Favourite';
 import Profile from './Profile/Profile';
 import AddProduct from './AddProduct/AddProduct';
 import MyProducts from './MyProducts/MyProducts';
+import MarketDetail from './MarketDetail/MarketDetail';
+import HomeProducer from './HomeProducer/HomeProducer';
 
 export {
   Login,
@@ -22,4 +24,6 @@ export {
   Profile,
   AddProduct,
   MyProducts,
+  MarketDetail,
+  HomeProducer,
 };

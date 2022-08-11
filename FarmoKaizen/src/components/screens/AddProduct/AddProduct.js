@@ -27,8 +27,79 @@ import {
   DocumentUploadButton,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
-
+import ImagePicker from 'react-native-image-picker';
 export class AddProduct extends Component {
+  state = {
+    proName: '',
+    proDes: '',
+    proPrice: '',
+    proQua: '',
+    proName: '',
+    filePath: '',
+    docData: undefined,
+  };
+
+  openImagePicker() {
+    let options = {
+      title: 'Select Image',
+      allowsEditing: false,
+      quality: 0.5,
+      mediaType: 'photo',
+      customButtons: [],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    ImagePicker.launchImageLibrary(options, response => {
+      console.log('Response = ', response);
+      if (Object.keys(response).includes('error')) {
+        //  alert(response.error + `. ${LanguageManager.KycScreen.enablePermissions}`)
+
+        Alert.alert(
+          'FarmoKaizen',
+          response.error,
+          [
+            {
+              text: 'OK',
+              onPress: () => {},
+            },
+          ],
+          {cancelable: false},
+        );
+      } else {
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+        } else {
+          if (response.fileSize < 5242880) {
+            this.state.filePath = response.uri;
+            this.state.docData = response.data;
+            this.setState({});
+          } else {
+            // alert(LanguageManager.KycScreen.largeImageAlert)
+
+            Alert.alert(
+              'FarmoKaizen',
+              'Image is larger',
+              [
+                {
+                  text: 'OK',
+                  onPress: () => {},
+                },
+              ],
+              {cancelable: false},
+            );
+          }
+        }
+      }
+    });
+  }
+
   render() {
     return (
       <>
@@ -56,9 +127,12 @@ export class AddProduct extends Component {
                 onChangeText={text => {}}
               />
               <Text style={[styles.textStyle, {marginTop: 20}]}>
-                License Image
+                Product Image
               </Text>
-              <DocumentUploadButton></DocumentUploadButton>
+              <DocumentUploadButton
+                onPress={() => {
+                  this.openImagePicker();
+                }}></DocumentUploadButton>
               <Button
                 def
                 children={'Submit'}

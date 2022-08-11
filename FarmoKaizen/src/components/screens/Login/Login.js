@@ -29,8 +29,36 @@ import {
   InputWithLabels,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
+import {emailRegex, passwordRegEx_8, saveToAsyncStorage} from '../../../Utilis';
+import {USER_DATA} from '../../../Constants';
 
 class Login extends Component {
+  state = {
+    loginEmail: '',
+    loginPass: '',
+  };
+  loginApi() {
+    let parm = {
+      email: this.state.loginEmail.toLowerCase(),
+      password: this.state.loginPass,
+    };
+
+    this.props
+      .requestLoginUser(parm)
+
+      .then(res => {
+        console.log('LLLLL' + JSON.stringify(res.user));
+        saveToAsyncStorage(USER_DATA, JSON.stringify(res)).then(ss => {
+          if (res.user.role == 'producer') {
+            Actions.tabP();
+          } else if (res.user.role == 'consumer') {
+          } else {
+          }
+        });
+      })
+      .catch(err => {});
+  }
+
   render() {
     return (
       <>
@@ -45,14 +73,11 @@ class Login extends Component {
               <Input
                 customStyle={{marginTop: '30%'}}
                 placeholder="Email"
-                value={this.props.loginEmail}
+                value={this.state.loginEmail}
                 onChangeText={text => {
                   // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(text)) {
                   // if (ALPHABET_REGEX_WITH_CHR.test(text)) {
-                  this.props.loginFormUpdate({
-                    prop: 'loginEmail',
-                    value: text.replace(/\s+/g, ''),
-                  });
+                  this.setState({loginEmail: text.replace(/\s+/g, '')});
                   // }
 
                   // }
@@ -61,16 +86,13 @@ class Login extends Component {
               <Input
                 customStyle={{marginTop: 30}}
                 placeholder="Password"
-                value={this.props.loginEmail}
+                value={this.state.loginPass}
                 onChangeText={text => {
                   // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(text)) {
-                  // if (ALPHABET_REGEX_WITH_CHR.test(text)) {
-                  this.props.loginFormUpdate({
-                    prop: 'loginEmail',
-                    value: text.replace(/\s+/g, ''),
-                  });
+                  // if (passwordRegEx_8.test(text)) {
+                  this.setState({loginPass: text});
                   // }
-
+                  // }
                   // }
                 }}
               />
@@ -86,7 +108,19 @@ class Login extends Component {
                   Forgot Password?
                 </Text>
               </TouchableOpacity>
-              <Button children={'LOGIN'} onPress={() => Actions.tab()} />
+              <Button
+                children={'LOGIN'}
+                onPress={() => {
+                  // Actions.tab()
+                  if (!emailRegex.test(this.state.loginEmail)) {
+                    alert('Enter valid Email Address');
+                  } else if (this.state.loginPass.length < 8) {
+                    alert('Enter valid password');
+                  } else {
+                    this.loginApi();
+                  }
+                }}
+              />
             </View>
             <Button
               defaultBtn={{

@@ -13,6 +13,8 @@ import {
   Profile,
   AddProduct,
   MyProducts,
+  MarketDetail,
+  HomeProducer,
 } from './components/screens/index';
 
 import {EventRegister} from 'react-native-event-listeners';
@@ -79,6 +81,13 @@ const RouterComponent = () => {
           gestureEnable={false}
           panHandlers={null}
         />
+        <Scene
+          key="MarketDetail"
+          hideNavBar={true}
+          component={MarketDetail}
+          gestureEnable={false}
+          panHandlers={null}
+        />
 
         <Tabs
           showLabel={false}
@@ -128,6 +137,42 @@ const RouterComponent = () => {
               //EventRegister.emit('FavouriteClicked', 'it works!!!');
             }}
           />
+          <Scene
+            hideNavBar={true}
+            key="Profile"
+            component={Profile}
+            gestureEnable={false}
+            panHandlers={null}
+            tabBarOnPress={obj => {
+              // alert(JSON.stringify(obj))
+              const routeName = obj.navigation.state.key;
+              obj.navigation.navigate(obj.navigation.state.routeName);
+              //EventRegister.emit('ProfileClicked', 'it works!!!');
+            }}
+          />
+        </Tabs>
+
+        <Tabs
+          showLabel={false}
+          lazy={true}
+          // tabStyle={styles.tab}
+          // tabBarStyle={styles.tabs}
+          // labelStyle={styles.label}
+          swipeEnabled={false}
+          gestureEnable={false}
+          panHandlers={null}
+          // tabStyle={{ backgroundColor: 'rgba(17,17,17,1)' }}
+          tabBarStyle={{bottom: 10}}
+          type="reset"
+          key="tabP">
+          <Scene
+            key="HomeProducer"
+            hideNavBar={true}
+            component={HomeProducer}
+            gestureEnable={false}
+            panHandlers={null}
+          />
+
           <Scene
             hideNavBar={true}
             key="Profile"

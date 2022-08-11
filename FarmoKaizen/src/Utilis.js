@@ -60,7 +60,7 @@ export async function isNetworkAvailable() {
 
 export const showAlertWithMessage = message => {
   Alert.alert(
-    'NFTY',
+    'FarmoKaizen',
     message,
     [
       {

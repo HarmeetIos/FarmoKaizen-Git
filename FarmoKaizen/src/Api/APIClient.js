@@ -39,9 +39,6 @@ export const get = endpoint => {
     let header = {
       contentType: 'application/json',
       Authorization: global.access_token,
-      appversion: Utils.appVersion,
-      devicetoken: Utils.fcmToken,
-      // 'testuser': 'harmeet@mailinator.com'
     };
     ApiStore.get(endpoint, {headers: header})
       .then(response => {
@@ -49,16 +46,6 @@ export const get = endpoint => {
         //     showUpdateAlert()
         // }
         if (response.data != undefined) {
-          if (
-            response.data.access_token != undefined &&
-            response.data.access_token != null
-          ) {
-            global.access_token = response.data.access_token;
-            saveToAsyncStorage(
-              Constants.ACCESS_TOKEN,
-              response.data.access_token,
-            ).then(() => {});
-          }
         }
         resolve(response);
       })
@@ -66,76 +53,22 @@ export const get = endpoint => {
         console.log(JSON.stringify(error));
         console.log(`In error${error.response.status}`);
         // 503 maintainence
-        if (error.response.status == '401') {
-          logoutUser(true, '');
-          reject(null);
-        } else if (error.response.status == '502') {
-          alert('Server is not responding.Please try again.');
-          reject(null);
-        } else if (error.response.status == '503') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else if (error.response.status == '423') {
-          showForcedAlert();
-          reject(null);
-        } else if (error.response.status == '409') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else {
-          reject(error);
-        }
+
+        reject(error);
       });
   });
 };
 
 export const post = (endpoint, data, UserToken) => {
-  if (!global.isConnected || !global.isInternetReachable) {
-    if (!this.alertPresent) {
-      this.alertPresent = true;
-      Alert.alert(
-        '',
-        'No internet connection',
-        [
-          {
-            text: 'OK',
-            onPress: () => {
-              this.alertPresent = false;
-            },
-          },
-        ],
-        {cancelable: false},
-      );
-    }
-    return new Promise((resolve, reject) => {
-      reject(null);
-    });
-  }
   return new Promise((resolve, reject) => {
-    console.log('UserToken', global.access_token);
     console.log('url', `${BASE_URL}${endpoint}`);
     console.log('params', JSON.stringify(data));
-    let encrypted = encryptData(data);
-    // let newParam = { 'data': encrypted }
     let header = {};
-
-    // if (endpoint == LOGOUT_USER_API_POST) {
-
-    //     header = {
-    //         contentType: "application/json",
-    //         "Authorization": UserToken,
-    //         "appversion": Utils.appVersion,
-    //         "devicetoken": Utils.fcmToken
-    //         // 'testuser': 'harmeet@mailinator.com'
-
-    //     }
-    // } else {
 
     header = {
       'Content-Type': 'application/json',
-      Authorization: global.access_token,
-      appversion: Utils.appVersion,
     };
-    // }
+
     console.log('header', header);
     ApiStore.post(endpoint, data, {
       headers: header,
@@ -146,73 +79,16 @@ export const post = (endpoint, data, UserToken) => {
         // }
         console.log('RESPONSE DATA', response);
         if (response.data != undefined) {
-          if (
-            response.data.access_token != undefined &&
-            response.data.access_token != null
-          ) {
-            global.access_token = response.data.access_token;
-            saveToAsyncStorage(
-              Constants.ACCESS_TOKEN,
-              response.data.access_token,
-            ).then(res => {});
-          }
         }
 
         resolve(response);
       })
       .catch(error => {
         // debugger;
+        reject(error);
         console.log(error);
         console.log('error message', error.message);
-        console.log('error status', error.response.data);
-        if (error.response.status == '400') {
-          Alert.alert(
-            'ERROR!',
-            error.response.data.message,
-            [
-              {
-                text: 'OK',
-                onPress: () => {},
-              },
-            ],
-            {cancelable: false},
-          );
-
-          reject(null);
-        } else if (error.response.status == '401') {
-          logoutUser(true, '');
-          reject(null);
-        } else if (error.response.status == '502') {
-          Alert.alert(
-            'NFTY',
-            'Server is not responding.Please try again.',
-            [
-              {
-                text: 'OK',
-                onPress: () => {},
-              },
-            ],
-            {cancelable: false},
-          );
-
-          reject(null);
-        } else if (error.response.status == '503') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else if (error.response.status == '423') {
-          showForcedAlert();
-          console.log('in 432');
-          reject(null);
-        } else if (error.response.status == '409') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else {
-          reject(error);
-        }
-        // else if (error.response.status == "422") {
-        //     showLoggedInAlert()
-        //     reject(null)
-        // }
+        console.log('error status', error.response.data.error);
       });
   });
 };
@@ -292,35 +168,9 @@ export const put = (endpoint, data, UserToken) => {
       .catch(error => {
         // debugger;
         console.log(JSON.stringify(error));
-        if (error.response.status == '401') {
-          logoutUser(true, '');
-          reject(null);
-        } else if (error.response.status == '502') {
-          Alert.alert(
-            'FarmoKaizen',
-            'Server is not responding.Please try again.',
-            [
-              {
-                text: 'OK',
-                onPress: () => {},
-              },
-            ],
-            {cancelable: false},
-          );
 
-          reject(null);
-        } else if (error.response.status == '503') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else if (error.response.status == '423') {
-          showForcedAlert();
-          reject(null);
-        } else if (error.response.status == '409') {
-          logoutUser(false, error.response.data.message);
-          reject(null);
-        } else {
-          reject(error);
-        }
+        reject(error);
+
         // else if (error.response.status == "422") {
         //     showLoggedInAlert()
         //     reject(null)
@@ -385,41 +235,4 @@ const showForcedAlert = () => {
     {cancelable: false},
   );
   // }
-};
-
-const logoutUser = (session, message) => {
-  if (!this.alertPresent) {
-    this.alertPresent = true;
-
-    Alert.alert(
-      global.appName,
-      session == true ? 'Session expired' : message,
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            this.alertPresent = false;
-            console.log('qwqwqwqwqwqwqw');
-            if (session == true) {
-              Actions.Login();
-              logoutAndReset();
-            } else {
-              Utils.getAsyncStorage(Constants.USER_DEVICE_TOK).then(fcmm => {
-                EncryptedStorage.clear().then(res => {
-                  Utils.saveToAsyncStorage(
-                    Constants.USER_DEVICE_TOK,
-                    fcmm,
-                  ).then(res => {});
-                  Actions.Login();
-                  logoutAndReset();
-                  // Utils.socket.emit("logout", { "userId": Utils.userId })
-                });
-              });
-            }
-          },
-        },
-      ],
-      {cancelable: false},
-    );
-  }
 };

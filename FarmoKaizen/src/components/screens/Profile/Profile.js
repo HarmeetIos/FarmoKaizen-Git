@@ -32,7 +32,28 @@ import {
   TabIcon,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
-const settingItem = [
+import {getAsyncStorage} from '../../../Utilis';
+import {USER_DATA} from '../../../Constants';
+const settingItemP = [
+  {
+    title: 'My Products',
+    image: Images.shoppingBagIcon,
+  },
+  {
+    title: 'Setting',
+    image: Images.settingsIcon,
+  },
+  {
+    title: 'Help',
+    image: Images.questionIcon,
+  },
+  {
+    title: 'Logout',
+    image: Images.logoutIcon,
+  },
+];
+
+const settingItemD = [
   {
     title: 'My Delivered Orders',
     image: Images.shoppingBagIcon,
@@ -62,6 +83,38 @@ const settingItem = [
     image: Images.logoutIcon,
   },
 ];
+
+const settingItemC = [
+  {
+    title: 'My Delivered Orders',
+    image: Images.shoppingBagIcon,
+  },
+  {
+    title: 'Manage Payments',
+    image: Images.piggyBankIcon,
+  },
+  {
+    title: 'My Orders',
+    image: Images.myOrdersIcon,
+  },
+  {
+    title: 'Un Assigned Orders',
+    image: Images.unOrderIcon,
+  },
+  {
+    title: 'Setting',
+    image: Images.settingsIcon,
+  },
+  {
+    title: 'Help',
+    image: Images.questionIcon,
+  },
+  {
+    title: 'Logout',
+    image: Images.logoutIcon,
+  },
+];
+
 export class Profile extends Component {
   static navigationOptions = () => {
     return {
@@ -86,6 +139,24 @@ export class Profile extends Component {
     };
   };
 
+  state = {
+    userInfo: undefined,
+    listItems: [],
+  };
+
+  componentDidMount() {
+    getAsyncStorage(USER_DATA).then(userData => {
+      this.setState({userInfo: JSON.parse(userData)});
+      if (JSON.parse(userData).user.role == 'producer') {
+        this.setState({listItems: settingItemP});
+      } else if (JSON.parse(userData).user.role == 'consumer') {
+        this.setState({listItems: settingItemC});
+      } else {
+        this.setState({listItems: settingItemD});
+      }
+    });
+  }
+
   render() {
     return (
       <>
@@ -93,7 +164,7 @@ export class Profile extends Component {
         <View style={styles.mainView}>
           <FlatList
             bounces={false}
-            data={settingItem}
+            data={this.state.listItems}
             renderItem={({item, index}) => {
               return (
                 <TouchableOpacity
@@ -143,7 +214,9 @@ export class Profile extends Component {
                       fontSize: 18,
                       marginTop: 10,
                     }}>
-                    {'John deo'}
+                    {this.state.userInfo != undefined
+                      ? this.state.userInfo.user.name
+                      : ''}
                   </Text>
                   <Text
                     style={{
@@ -152,7 +225,9 @@ export class Profile extends Component {
                       fontSize: 18,
                       marginTop: 10,
                     }}>
-                    {'Joh@gmail.com'}
+                    {this.state.userInfo != undefined
+                      ? this.state.userInfo.user.email
+                      : ''}
                   </Text>
                 </View>
               );

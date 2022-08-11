@@ -12,6 +12,7 @@
 		0508E8762891832D00DC36B1 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0508E8722891832D00DC36B1 /* Roboto-Black.ttf */; };
 		0508E8772891832D00DC36B1 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0508E8732891832D00DC36B1 /* Roboto-Regular.ttf */; };
 		0508E8782891832D00DC36B1 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0508E8742891832D00DC36B1 /* Roboto-Medium.ttf */; };
+		05401D8E28A334020056565B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05401D8D28A334020056565B /* GoogleService-Info.plist */; };
 		0C80B921A6F3F58F76C31292 /* libPods-FarmoKaizen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-FarmoKaizen.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -38,6 +39,7 @@
 		0508E8722891832D00DC36B1 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Black.ttf"; path = "../../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		0508E8732891832D00DC36B1 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		0508E8742891832D00DC36B1 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "../../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		05401D8D28A334020056565B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FarmoKaizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmoKaizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FarmoKaizen/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = FarmoKaizen/AppDelegate.mm; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
+				05401D8D28A334020056565B /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -268,6 +271,7 @@
 				0508E8772891832D00DC36B1 /* Roboto-Regular.ttf in Resources */,
 				0508E8752891832D00DC36B1 /* Roboto-Bold.ttf in Resources */,
 				0508E8762891832D00DC36B1 /* Roboto-Black.ttf in Resources */,
+				05401D8E28A334020056565B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
