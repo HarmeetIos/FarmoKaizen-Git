@@ -6,11 +6,23 @@ import {getAsyncStorage} from '../../../Utilis';
 import styles from './SplashStyles';
 
 import {connect} from 'react-redux';
+import {USER_DATA} from '../../../Constants';
 
 export class Splash extends Component {
   componentDidMount() {
     setTimeout(() => {
-      Actions.Login();
+      getAsyncStorage(USER_DATA).then(res => {
+        console.log(JSON.stringify(res));
+        if (JSON.parse(res)) {
+          if (JSON.parse(res).user.role == 'producer') {
+            Actions.tabP();
+          } else if (JSON.parse(res).user.role == 'consumer') {
+            Actions.tab();
+          }
+        } else {
+          Actions.Login();
+        }
+      });
     }, 2000);
   }
 

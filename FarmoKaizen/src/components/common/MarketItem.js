@@ -36,6 +36,7 @@ const MarketItem = props => {
             fontSize: 20,
             color: 'grey',
             marginTop: 10,
+            height: 20,
           }}>
           {props.subtitle}
         </Text>
@@ -53,7 +54,7 @@ const MarketItem = props => {
             justifyContent: 'space-between',
           }}>
           <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{
                 height: 30,
                 width: 30,
@@ -90,7 +91,7 @@ const MarketItem = props => {
               <Text style={{fontFamily: Fonts.robotoBold, fontSize: 20}}>
                 {'+'}
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <Button
             children={'Add'}

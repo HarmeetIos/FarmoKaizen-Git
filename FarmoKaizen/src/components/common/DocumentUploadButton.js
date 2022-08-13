@@ -10,6 +10,7 @@ const DocumentUploadButton = ({
   disabled,
   accessibilityLabel,
   testID,
+  imageSource,
 }) => {
   return (
     <TouchableOpacity
@@ -20,7 +21,7 @@ const DocumentUploadButton = ({
       onPress={onPress}
       disabled={disabled}>
       <Text style={[styles.textStyle, defaultBtnText]}>{children}</Text>
-      <Image style={styles.imageStyle} source={Images.uploadIcon}></Image>
+      <Image style={styles.imageStyle} source={imageSource}></Image>
     </TouchableOpacity>
   );
 };
@@ -51,8 +52,9 @@ const styles = StyleSheet.create({
     zIndex: 999999,
   },
   imageStyle: {
-    tintColor: 'grey',
     alignSelf: 'center',
+    height: '100%',
+    width: '100%',
   },
 });
 

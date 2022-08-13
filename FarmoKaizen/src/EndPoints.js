@@ -6,3 +6,4 @@ export const BASE_URL =
 
 export const REGISTER_USER_API_POST = 'auth/register';
 export const LOGIN_USER_API_POST = 'auth/login/';
+export const ADD_PRODUCT_POST = 'product/create/';

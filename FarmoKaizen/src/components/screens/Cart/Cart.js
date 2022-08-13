@@ -27,7 +27,7 @@ import {
   LoaderView,
   ScreenBg,
   InputWithLabels,
-  OrderList,
+  OrderListCart,
   TabIcon,
   HeaderHome,
 } from '../../common';
@@ -62,7 +62,8 @@ export class Cart extends Component {
       <>
         <HeaderHome Title={'Cart'} hideLeftBtn={{display: 'none'}} />
         <View style={styles.mainView}>
-          <OrderList value={[1, 2, 3, 4, 5, 6, 7]}></OrderList>
+          <OrderListCart value={[1, 2, 3, 4, 5, 6, 7]}></OrderListCart>
+          <Button children={'Checkout'}></Button>
         </View>
       </>
     );

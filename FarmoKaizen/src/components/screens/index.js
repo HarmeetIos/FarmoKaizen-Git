@@ -11,7 +11,8 @@ import AddProduct from './AddProduct/AddProduct';
 import MyProducts from './MyProducts/MyProducts';
 import MarketDetail from './MarketDetail/MarketDetail';
 import HomeProducer from './HomeProducer/HomeProducer';
-
+import ProductDetails from './ProductDetails/ProductDetails';
+import ForgotPass from './ForgotPassword/ForgotPass';
 export {
   Login,
   Splash,
@@ -26,4 +27,6 @@ export {
   MyProducts,
   MarketDetail,
   HomeProducer,
+  ProductDetails,
+  ForgotPass,
 };

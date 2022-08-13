@@ -22,6 +22,7 @@ import {
 } from '../../../Redux/Action';
 
 import {Colors, Fonts, Images} from '../../../theme';
+import EncryptedStorage from 'react-native-encrypted-storage';
 import {
   Button,
   Input,
@@ -32,7 +33,7 @@ import {
   TabIcon,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
-import {getAsyncStorage} from '../../../Utilis';
+import {getAsyncStorage, saveToAsyncStorage} from '../../../Utilis';
 import {USER_DATA} from '../../../Constants';
 const settingItemP = [
   {
@@ -86,10 +87,6 @@ const settingItemD = [
 
 const settingItemC = [
   {
-    title: 'My Delivered Orders',
-    image: Images.shoppingBagIcon,
-  },
-  {
     title: 'Manage Payments',
     image: Images.piggyBankIcon,
   },
@@ -97,10 +94,7 @@ const settingItemC = [
     title: 'My Orders',
     image: Images.myOrdersIcon,
   },
-  {
-    title: 'Un Assigned Orders',
-    image: Images.unOrderIcon,
-  },
+
   {
     title: 'Setting',
     image: Images.settingsIcon,
@@ -139,6 +133,29 @@ export class Profile extends Component {
     };
   };
 
+  logoutUser() {
+    Alert.alert(
+      'FarmoKaizen',
+      'Are you sure?',
+      [
+        {
+          text: 'Yes',
+          onPress: () => {
+            EncryptedStorage.clear().then(res => {
+              Actions.Login();
+            });
+          },
+        },
+        {
+          text: 'NO',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ],
+      {cancelable: false},
+    );
+  }
+
   state = {
     userInfo: undefined,
     listItems: [],
@@ -168,6 +185,21 @@ export class Profile extends Component {
             renderItem={({item, index}) => {
               return (
                 <TouchableOpacity
+                  onPress={() => {
+                    if (this.state.listItems == settingItemP) {
+                      if (index == 0) {
+                        Actions.MyProducts();
+                      } else {
+                        this.logoutUser();
+                      }
+                    } else if (this.state.listItems == settingItemC) {
+                      if (index == 0) {
+                        Actions.AddPayment();
+                      } else {
+                        this.logoutUser();
+                      }
+                    }
+                  }}
                   style={{
                     height: 60,
                     borderBottomColor: 'grey',
@@ -201,11 +233,11 @@ export class Profile extends Component {
                     alignItems: 'center',
                   }}>
                   <Image
+                    source={Images.userPlaceholderImage}
                     style={{
                       height: 100,
                       width: 100,
                       borderRadius: 50,
-                      backgroundColor: 'red',
                     }}></Image>
                   <Text
                     style={{

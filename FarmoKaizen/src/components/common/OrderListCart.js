@@ -9,11 +9,10 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
 import {Fonts, Images, Colors} from '../../theme';
-import {MarketItem} from './MarketItem';
+import {OrderItem} from './OrderItem';
 
-class FavouriteList extends Component {
+class OrderListCart extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -48,21 +47,14 @@ class FavouriteList extends Component {
           extraData={this.props.extraData}
           data={this.props.value}
           renderItem={({item, index}) => {
-            var randomnumber = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
-
             // alert(JSON.stringify(item))
-            console.log(this.props.value.length);
-            let imagePath = this.props.value2[index].images[0];
             return (
-              <MarketItem
-                image={{uri: imagePath ? imagePath : ''}}
-                title={item.name}
-                price={'$ ' + item.price + '/' + item.quantity + 'Kg'}
-                subtitle={item.description}
-                rating={randomnumber}
-                onPress={() => {
-                  this.props.itemClickedAt(index);
-                }}
+              <OrderItem
+                // image={{uri: this.props.value2[index].images[0]}}
+                title={'name'}
+                subtitle={'description'}
+                date={'$ 0'}
+                onPress={() => {}}
               />
             );
           }}
@@ -106,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {FavouriteList};
+export {OrderListCart};

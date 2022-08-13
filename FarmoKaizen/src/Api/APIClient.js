@@ -11,30 +11,7 @@ import {saveToAsyncStorage} from '../Utilis';
 import * as Constants from '../Constants';
 
 export const get = endpoint => {
-  if (!global.isConnected || !global.isInternetReachable) {
-    if (!this.alertPresent) {
-      this.alertPresent = true;
-      Alert.alert(
-        '',
-        'No internet connection',
-        [
-          {
-            text: 'OK',
-            onPress: () => {
-              this.alertPresent = false;
-            },
-          },
-        ],
-        {cancelable: false},
-      );
-    }
-    return new Promise((resolve, reject) => {
-      reject(null);
-    });
-  }
-
   return new Promise((resolve, reject) => {
-    console.log('UserToken', global.access_token);
     console.log('url', `${BASE_URL}${endpoint}`);
     let header = {
       contentType: 'application/json',

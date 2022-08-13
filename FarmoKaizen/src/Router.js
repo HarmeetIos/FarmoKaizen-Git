@@ -15,6 +15,8 @@ import {
   MyProducts,
   MarketDetail,
   HomeProducer,
+  ProductDetails,
+  ForgotPass,
 } from './components/screens/index';
 
 import {EventRegister} from 'react-native-event-listeners';
@@ -54,12 +56,27 @@ const RouterComponent = () => {
           panHandlers={null}
         />
         <Scene
+          key="ProductDetails"
+          hideNavBar={true}
+          component={ProductDetails}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+        <Scene
           key="AddLicense"
           hideNavBar={true}
           component={AddLicense}
           gestureEnable={false}
           panHandlers={null}
         />
+        <Scene
+          key="ForgotPass"
+          hideNavBar={true}
+          component={ForgotPass}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+
         <Scene
           key="AddPayment"
           hideNavBar={true}
@@ -88,7 +105,6 @@ const RouterComponent = () => {
           gestureEnable={false}
           panHandlers={null}
         />
-
         <Tabs
           showLabel={false}
           lazy={true}
@@ -151,7 +167,6 @@ const RouterComponent = () => {
             }}
           />
         </Tabs>
-
         <Tabs
           showLabel={false}
           lazy={true}

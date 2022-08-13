@@ -19,5 +19,7 @@ const images = {
   questionIcon: require('../../assets/Images/question.png'),
   settingsIcon: require('../../assets/Images/settings.png'),
   shoppingBagIcon: require('../../assets/Images/shopping-bag.png'),
+  userPlaceholderImage: require('../../assets/Images/placeholder_user.jpeg'),
 };
+
 export default images;

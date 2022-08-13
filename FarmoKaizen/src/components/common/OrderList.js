@@ -50,9 +50,10 @@ class OrderList extends Component {
             // alert(JSON.stringify(item))
             return (
               <OrderItem
-                title="Tiee"
-                subtitle="jkjkj"
-                date="1212"
+                image={{uri: this.props.value2[index].images[0]}}
+                title={item.name}
+                subtitle={item.description}
+                date={'$ ' + item.price}
                 onPress={() => {}}
               />
             );
