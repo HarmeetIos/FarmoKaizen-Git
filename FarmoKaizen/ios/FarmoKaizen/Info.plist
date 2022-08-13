@@ -22,6 +22,11 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>FarmoKaizen want to access camera to take photo</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To upload Pictures</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto-Black.ttf</string>

@@ -1,7 +1,6 @@
 const colors = {
   Black: '#000',
-
-  transactionTime: '#868686',
+  orangeColor: '##CC7D00',
   buttonGreenColor: '#69A03A',
   signupButtonColor: 'rgb(86,218,218)',
   White: 'white',

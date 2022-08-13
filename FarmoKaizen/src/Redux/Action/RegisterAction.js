@@ -25,7 +25,7 @@ import {
 } from '../../Utilis';
 import * as Constants from '../../Constants';
 import * as APIClient from '../../Api/APIClient';
-import RNFetchBlob from 'rn-fetch-blob';
+
 import * as Utils from '../../Utilis';
 /**************************************Update prop values ****************************************************/
 export const registerFormUpdate = ({prop, value}) => {
@@ -48,97 +48,28 @@ export const resetRegisterForm = () => {
 
 /************************************** Add user address ****************************************************/
 
-export const addUserAddress = params => {
+export const requestRegisterUser = params => {
+  debugger;
   return dispatch =>
     new Promise((resolve, reject) => {
       dispatch({type: REGISTER_USER});
-    });
-};
-/*
-export const saveUserInterests = params => {
-  return dispatch =>
-    new Promise((resolve, reject) => {
-      dispatch({type: REGISTER_USER});
-      APIClient.post(SAVE_USR_INTEREST_API_POST, params, '')
+      // alert(JSON.stringify(params))
+
+      APIClient.post(REGISTER_USER_API_POST, params)
         .then(response => {
-          console.log(
-            'saveUserInterests success **** ' + JSON.stringify(response.data),
-          );
-          registerFormSuccess(dispatch, response.data.data);
-          // saveToAsyncStorage(Constants.USER_DATA, JSON.stringify(response.data.data)).then(res => {
+          console.log('Register success **** ' + JSON.stringify(response.data));
+
+          registerUserSuccess(dispatch, response.data);
           resolve(response.data);
-          // })
         })
         .catch(error => {
-          if (error == null) {
-            console.log('saveUserInterests Error **** SE');
-            registerUserFail(dispatch, 'SE');
-            reject('SE');
-          }
-
-          console.log('saveUserInterests Error ****', error);
-          registerUserFail(
-            dispatch,
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          showAlert(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          reject(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
+          console.log('Register Error ****', error.response.data.message);
+          registerUserFail(dispatch, error.response.data.message);
+          showAlert(error.response.data.message);
+          reject(error.response.data.message);
         });
     });
 };
-
-export const skipUserInterests = params => {
-  return dispatch =>
-    new Promise((resolve, reject) => {
-      dispatch({type: REGISTER_USER});
-      APIClient.get('user/send_email_on_skip', '')
-        .then(response => {
-          console.log(
-            'saveUserInterests success **** ' + JSON.stringify(response.data),
-          );
-          registerFormSuccess(dispatch, response.data.data);
-          // saveToAsyncStorage(Constants.USER_DATA, JSON.stringify(response.data.data)).then(res => {
-          resolve(response.data);
-          // })
-        })
-        .catch(error => {
-          if (error == null) {
-            console.log('saveUserInterests Error **** SE');
-            registerUserFail(dispatch, 'SE');
-            reject('SE');
-          }
-
-          console.log('saveUserInterests Error ****', error);
-          registerUserFail(
-            dispatch,
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          showAlert(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          reject(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-        });
-    });
-};
-*/
 
 /************************************** Register User Api request ****************************************************/
 

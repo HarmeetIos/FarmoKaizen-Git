@@ -2,8 +2,8 @@
 import {stage} from './Utilis';
 
 export const BASE_URL =
-  stage == false
-    ? 'https://api.farmo.io/nfty/api/v1/'
-    : 'https://stage-api.goldgo.io/nfty/api/v1/';
+  stage == false ? 'http://localhost:5000/api/' : 'http://localhost:5000/api/';
 
-export const REGISTER_USER_API_POST = 'user/register';
+export const REGISTER_USER_API_POST = 'auth/register';
+export const LOGIN_USER_API_POST = 'auth/login/';
+export const ADD_PRODUCT_POST = 'product/create/';

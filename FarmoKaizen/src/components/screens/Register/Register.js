@@ -14,8 +14,8 @@ import {
   Alert,
   AsyncStorage,
 } from 'react-native';
-import {registerFormUpdate} from '../../../Redux/Action';
-
+import {registerFormUpdate, requestRegisterUser} from '../../../Redux/Action';
+import RNPickerSelect from 'react-native-picker-select';
 import {Colors, Fonts, Images} from '../../../theme';
 import {
   Button,
@@ -26,8 +26,36 @@ import {
   Header,
 } from '../../common';
 import {Actions} from 'react-native-router-flux';
-
+import {ApiStore} from '../../../Api';
+import * as Utils from '../../../Utilis';
 class Register extends Component {
+  state = {
+    firstName: '',
+    lastName: '',
+    areYou: '',
+    emailAdd: '',
+    phnNo: '',
+    pass: '',
+  };
+  registerUserApi() {
+    let param = {
+      name: this.state.firstName + ' ' + this.state.lastName,
+      email: this.state.emailAdd,
+      password: this.state.pass,
+      role: this.state.areYou.toLowerCase(),
+      phone: this.state.phnNo,
+      date_created: Date.now(),
+    };
+
+    this.props
+      .requestRegisterUser(param)
+      .then(res => {
+        Utils.showAlertWithMessage('Registered Successfully');
+        Actions.pop();
+      })
+      .catch(err => {});
+  }
+
   render() {
     return (
       <>
@@ -37,25 +65,68 @@ class Register extends Component {
             <View>
               <InputWithLabels
                 placeholder="First Name"
-                onChangeText={text => {}}
+                value={this.state.firstName}
+                onChangeText={text => {
+                  this.setState({firstName: text});
+                }}
               />
               <InputWithLabels
                 placeholder="Last Name"
-                onChangeText={text => {}}
+                value={this.state.lastName}
+                onChangeText={text => {
+                  this.setState({lastName: text});
+                }}
               />
               <InputWithLabels
-                placeholder="Are you"
-                onChangeText={text => {}}
+                placeholder="Are you(eg. producer, consumer, driver)"
+                value={this.state.areYou}
+                onChangeText={text => {
+                  this.setState({areYou: text});
+                }}
+              />
+              <InputWithLabels
+                placeholder="Email Address"
+                value={this.state.emailAdd}
+                onChangeText={text => {
+                  this.setState({emailAdd: text});
+                }}
+              />
+              <InputWithLabels
+                placeholder="Password"
+                value={this.state.pass}
+                onChangeText={text => {
+                  this.setState({pass: text});
+                }}
               />
               <InputWithLabels
                 customStyle={{marginBottom: 40}}
-                placeholder="Email Address"
-                onChangeText={text => {}}
+                placeholder="Phone No"
+                value={this.state.phnNo}
+                onChangeText={text => {
+                  this.setState({phnNo: text});
+                }}
               />
               <Button
                 def
                 children={'REGISTER'}
-                onPress={() => Actions.AddLicense()}
+                onPress={() => {
+                  if (this.state.firstName.length == 0) {
+                    alert('Enter first name');
+                  } else if (this.state.lastName.length == 0) {
+                    alert('Enter last name');
+                  } else if (this.state.areYou.length == 0) {
+                    alert('Are you?');
+                  } else if (this.state.emailAdd.length == 0) {
+                    alert('Enter email');
+                  } else if (!Utils.passwordRegEx_8.test(this.state.pass)) {
+                    Utils.showAlertWithMessage('Enter valid password');
+                    return;
+                  } else if (this.state.phnNo.length != 10) {
+                    alert('Enter valid mobile no with 10 digits');
+                  } else {
+                    this.registerUserApi();
+                  }
+                }}
               />
             </View>
           </KeyboardAwareScrollView>
@@ -89,4 +160,5 @@ const mapStateToProp = state => {
 
 export default connect(mapStateToProp, {
   registerFormUpdate,
+  requestRegisterUser,
 })(Register);

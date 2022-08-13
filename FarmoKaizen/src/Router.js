@@ -12,6 +12,11 @@ import {
   Favourite,
   Profile,
   AddProduct,
+  MyProducts,
+  MarketDetail,
+  HomeProducer,
+  ProductDetails,
+  ForgotPass,
 } from './components/screens/index';
 
 import {EventRegister} from 'react-native-event-listeners';
@@ -51,12 +56,27 @@ const RouterComponent = () => {
           panHandlers={null}
         />
         <Scene
+          key="ProductDetails"
+          hideNavBar={true}
+          component={ProductDetails}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+        <Scene
           key="AddLicense"
           hideNavBar={true}
           component={AddLicense}
           gestureEnable={false}
           panHandlers={null}
         />
+        <Scene
+          key="ForgotPass"
+          hideNavBar={true}
+          component={ForgotPass}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+
         <Scene
           key="AddPayment"
           hideNavBar={true}
@@ -71,7 +91,20 @@ const RouterComponent = () => {
           gestureEnable={false}
           panHandlers={null}
         />
-
+        <Scene
+          key="MyProducts"
+          hideNavBar={true}
+          component={MyProducts}
+          gestureEnable={false}
+          panHandlers={null}
+        />
+        <Scene
+          key="MarketDetail"
+          hideNavBar={true}
+          component={MarketDetail}
+          gestureEnable={false}
+          panHandlers={null}
+        />
         <Tabs
           showLabel={false}
           lazy={true}
@@ -120,6 +153,41 @@ const RouterComponent = () => {
               //EventRegister.emit('FavouriteClicked', 'it works!!!');
             }}
           />
+          <Scene
+            hideNavBar={true}
+            key="Profile"
+            component={Profile}
+            gestureEnable={false}
+            panHandlers={null}
+            tabBarOnPress={obj => {
+              // alert(JSON.stringify(obj))
+              const routeName = obj.navigation.state.key;
+              obj.navigation.navigate(obj.navigation.state.routeName);
+              //EventRegister.emit('ProfileClicked', 'it works!!!');
+            }}
+          />
+        </Tabs>
+        <Tabs
+          showLabel={false}
+          lazy={true}
+          // tabStyle={styles.tab}
+          // tabBarStyle={styles.tabs}
+          // labelStyle={styles.label}
+          swipeEnabled={false}
+          gestureEnable={false}
+          panHandlers={null}
+          // tabStyle={{ backgroundColor: 'rgba(17,17,17,1)' }}
+          tabBarStyle={{bottom: 10}}
+          type="reset"
+          key="tabP">
+          <Scene
+            key="HomeProducer"
+            hideNavBar={true}
+            component={HomeProducer}
+            gestureEnable={false}
+            panHandlers={null}
+          />
+
           <Scene
             hideNavBar={true}
             key="Profile"

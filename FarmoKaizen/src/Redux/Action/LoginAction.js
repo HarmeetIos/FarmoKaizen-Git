@@ -54,66 +54,28 @@ export const logoutAndReset = () => {
   };
 };
 /************************************** Login User Api request ****************************************************/
-/*
-export const requestLoginUser = (params, isFb) => {
+
+export const requestLoginUser = params => {
   console.log(params);
   return dispatch =>
     new Promise((resolve, reject) => {
-      dispatch({ type: LOGIN_USER });
+      dispatch({type: LOGIN_USER});
 
-      APIClient.post(isFb ? SOCIAL_LOGIN_USER_API_POST : LOGIN_USER_API_POST, params, '')
+      APIClient.post(LOGIN_USER_API_POST, params)
         .then(response => {
           // debugger;
           console.log('Login success **** ' + JSON.stringify(response.data));
-
-          saveToAsyncStorage(
-            Constants.USER_DATA,
-            JSON.stringify(response.data.data),
-          ).then(res => {
-            saveToAsyncStorage(
-              Constants.ACCESS_TOKEN,
-              response.data.access_token,
-            ).then(suu => {
-              saveToAsyncStorage(
-                Constants.LOGOUT_TOKEN,
-                response.data.logout_token,
-              ).then(log => {
-                console.log(
-                  '********\n\nLogout Token\n\n' +
-                    response.data.logout_token +
-                    '\n\n******',
-                );
-                resolve(response.data.data);
-              });
-            });
-          });
-          loginUserSuccess(dispatch, response.data.data);
+          resolve(response.data);
+          loginUserSuccess(dispatch, response.data);
         })
         .catch(error => {
-          if (error == null) {
+          if (error != null) {
             console.log('Login Error **** sE');
             loginUserFail(dispatch, 'se');
-
+            showAlert(error.response.data.error);
+            console.log('Login Error ****', error.response.data.message);
             reject('se');
           }
-
-          console.log('Login Error ****', error.response.data.message);
-          loginUserFail(
-            dispatch,
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          showAlert(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
-          reject(
-            error.response.data.message
-              ? error.response.data.message
-              : JSON.stringify(error.response),
-          );
         });
     });
 };
@@ -121,7 +83,7 @@ export const requestLoginUser = (params, isFb) => {
 const showAlert = msg => {
   showAlertWithMessage(msg);
 };
-
+/*
 export const requestGetUserDetails = () => {
   return dispatch =>
     new Promise((resolve, reject) => {

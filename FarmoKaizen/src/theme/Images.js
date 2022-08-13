@@ -8,5 +8,18 @@ const images = {
   cartIcon: require('../../assets/Images/cart.png'),
   favIcon: require('../../assets/Images/fav.png'),
   profileIcon: require('../../assets/Images/profile.png'),
+  rightArrowIcon: require('../../assets/Images/right-arrow.png'),
+
+  unOrderIcon: require('../../assets/Images/unOrder.png'),
+  cardIcon: require('../../assets/Images/card.png'),
+  piggyBankIcon: require('../../assets/Images/piggyBank.png'),
+  myOrdersIcon: require('../../assets/Images/myOrders.png'),
+  documentIcon: require('../../assets/Images/document.png'),
+  logoutIcon: require('../../assets/Images/logout.png'),
+  questionIcon: require('../../assets/Images/question.png'),
+  settingsIcon: require('../../assets/Images/settings.png'),
+  shoppingBagIcon: require('../../assets/Images/shopping-bag.png'),
+  userPlaceholderImage: require('../../assets/Images/placeholder_user.jpeg'),
 };
+
 export default images;
